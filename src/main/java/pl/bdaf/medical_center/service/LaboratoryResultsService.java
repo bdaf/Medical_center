@@ -9,7 +9,7 @@ public interface LaboratoryResultsService {
 
     LaboratoryResult getResultById(Long aResultId);
 
-    LaboratoryResult saveResult(LaboratoryResult aResult);
+    LaboratoryResult saveResult(Long aOrderId, LaboratoryResult aResult);
 
     LaboratoryResult updateResultById(Long aResultId, String aResult);
 

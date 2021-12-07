@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +26,12 @@ public class ResearchOrder {
     @Column(name = "research_date", nullable = false)
     private Date researchDate;
 
-    @ManyToOne
-    @JoinColumn(name = "consent_id", referencedColumnName = "consent_id", nullable = false)
-    private Consent consent;
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
+    private List<LaboratoryResult> results;
+
+    public void addResult(LaboratoryResult aResult){
+        if(results == null) results = new ArrayList<>();
+        results.add(aResult);
+    }
 }

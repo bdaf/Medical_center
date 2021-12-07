@@ -24,9 +24,9 @@ public class LaboratoryResultsController {
         return laboratoryResultsService.getResultById(aResultId);
     }
 
-    @PostMapping
-    public LaboratoryResult saveResult(@RequestBody LaboratoryResult aResult){
-        return laboratoryResultsService.saveResult(aResult);
+    @PostMapping("/{id}")
+    public LaboratoryResult saveResult(@PathVariable("id") Long aOrderId, @RequestBody LaboratoryResult aResult){
+        return laboratoryResultsService.saveResult(aOrderId, aResult);
     }
 
     @PutMapping("/{id}")

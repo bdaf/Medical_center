@@ -1,5 +1,6 @@
 package pl.bdaf.medical_center.service;
 
+import pl.bdaf.medical_center.entity.Consent;
 import pl.bdaf.medical_center.entity.ResearchOrder;
 
 import java.util.List;
@@ -9,5 +10,5 @@ public interface ResearchOrderService {
 
     ResearchOrder getOrderById(Long aOrderId);
 
-    ResearchOrder saveOrder(ResearchOrder aOrder);
+    Consent saveOrder(Long aConsentId, ResearchOrder aOrder);
 }

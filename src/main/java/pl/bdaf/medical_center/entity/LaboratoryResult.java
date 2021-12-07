@@ -22,8 +22,4 @@ public class LaboratoryResult {
 
     @Column(name = "result", length = 1023)
     private String result;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id")
-    private ResearchOrder order;
 }

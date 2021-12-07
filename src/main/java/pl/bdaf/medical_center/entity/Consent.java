@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -27,6 +29,15 @@ public class Consent {
     @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "project_id", nullable = false)
     private ResearchProject researchProject;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "consent_id", referencedColumnName = "consent_id", nullable = false)
+    private List<ResearchOrder> orders;
+
+    public void addOrder(ResearchOrder aOrder){
+        if(orders == null) orders = new ArrayList<>();
+        orders.add(aOrder);
+    }
 
     @Column(name = "is_connected")
     private Boolean isConnected = false;

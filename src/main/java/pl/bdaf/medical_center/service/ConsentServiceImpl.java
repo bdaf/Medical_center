@@ -25,8 +25,7 @@ public class ConsentServiceImpl implements ConsentService {
 
     @Override
     public Consent saveConsent(Consent aConsent) {
-        Consent save = consentRepository.save(aConsent);
-        return save;
+        return consentRepository.save(aConsent);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class LaboratoryResultsServiceImpl implements LaboratoryResultsService{
     }
 
     @Override
-    public LaboratoryResult saveResult(LaboratoryResult aResult) {
+    public LaboratoryResult saveResult(Long aOrderId, LaboratoryResult aResult) {
         return laboratoryResultsRepository.save(aResult);
     }
 

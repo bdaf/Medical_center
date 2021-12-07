@@ -28,16 +28,19 @@ public class ResearchOrderServiceImpl implements ResearchOrderService{
     }
 
     @Override
-    public ResearchOrder saveOrder(ResearchOrder aOrder) {
-        // return null if we can't get to consentId
-        if(aOrder == null || aOrder.getConsent() == null || aOrder.getConsent().getConsentId() == null)
-            return null;
-
+    public Consent saveOrder(Long aConsentId, ResearchOrder aOrder) {
         // get consent by id
-        Consent consent = consentService.getConsentById(aOrder.getConsent().getConsentId());
+        Consent consent = consentService.getConsentById(aConsentId);
+
+        // return null if we can't get to any consent
+        if(consent == null) return null;
 
         // save order only if patient is connected to project
-        if(consent.getIsConnected()) return researchOrderRepository.save(aOrder);
+        if(consent.getIsConnected()) {
+            researchOrderRepository.save(aOrder);
+            consent.addOrder(aOrder);
+            return consentService.saveConsent(consent);
+        }
         return null;
     }
 }
