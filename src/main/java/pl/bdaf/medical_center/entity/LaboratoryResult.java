@@ -12,16 +12,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "laboratory_results")
-public class LaboratoryResults {
+@Table(name = "laboratory_result")
+public class LaboratoryResult {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "laboratory_results_sequence")
     @SequenceGenerator(name = "laboratory_results_sequence", sequenceName = "laboratory_results_sequence", allocationSize = 1)
-    @Column(name = "results_id", nullable = false)
-    private Long resultsId;
+    @Column(name = "result_id", nullable = false)
+    private Long resultId;
 
-    @Column(name = "results", length = 1023)
-    private String results;
+    @Column(name = "result", length = 1023)
+    private String result;
 
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
