@@ -27,4 +27,7 @@ public class Consent {
     @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     private ResearchProject researchProject;
+
+    @Column(name = "is_connected")
+    private Boolean isConnected = false;
 }
