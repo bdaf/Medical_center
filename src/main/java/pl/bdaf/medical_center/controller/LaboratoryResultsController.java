@@ -3,6 +3,7 @@ package pl.bdaf.medical_center.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.bdaf.medical_center.entity.LaboratoryResult;
+import pl.bdaf.medical_center.entity.ResearchOrder;
 import pl.bdaf.medical_center.service.LaboratoryResultsService;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class LaboratoryResultsController {
     }
 
     @PostMapping("/{id}")
-    public LaboratoryResult saveResult(@PathVariable("id") Long aOrderId, @RequestBody LaboratoryResult aResult){
-        return laboratoryResultsService.saveResult(aOrderId, aResult);
+    public ResearchOrder saveResult(@PathVariable("id") Long aOrderId, @RequestBody LaboratoryResult aResult){
+        return laboratoryResultsService.addResult(aOrderId, aResult);
     }
 
     @PutMapping("/{id}")

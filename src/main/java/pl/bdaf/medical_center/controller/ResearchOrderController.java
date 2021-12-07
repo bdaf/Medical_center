@@ -27,7 +27,7 @@ public class ResearchOrderController {
 
     @PostMapping("/{id}")
     public Consent saveOrder(@PathVariable("id") Long aConsentId, @RequestBody ResearchOrder aOrder){
-        return researchOrderService.saveOrder(aConsentId, aOrder);
+        return researchOrderService.addOrder(aConsentId, aOrder);
     }
 
 }

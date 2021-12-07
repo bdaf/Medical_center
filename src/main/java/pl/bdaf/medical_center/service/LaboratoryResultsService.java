@@ -1,6 +1,7 @@
 package pl.bdaf.medical_center.service;
 
 import pl.bdaf.medical_center.entity.LaboratoryResult;
+import pl.bdaf.medical_center.entity.ResearchOrder;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface LaboratoryResultsService {
 
     LaboratoryResult getResultById(Long aResultId);
 
-    LaboratoryResult saveResult(Long aOrderId, LaboratoryResult aResult);
+    ResearchOrder addResult(Long aOrderId, LaboratoryResult aResult);
 
     LaboratoryResult updateResultById(Long aResultId, String aResult);
 

@@ -10,5 +10,7 @@ public interface ResearchOrderService {
 
     ResearchOrder getOrderById(Long aOrderId);
 
-    Consent saveOrder(Long aConsentId, ResearchOrder aOrder);
+    Consent addOrder(Long aConsentId, ResearchOrder aOrder);
+
+    ResearchOrder saveOrder(ResearchOrder aOrder);
 }

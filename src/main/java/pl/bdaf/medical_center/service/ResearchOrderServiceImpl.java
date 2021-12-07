@@ -28,7 +28,7 @@ public class ResearchOrderServiceImpl implements ResearchOrderService{
     }
 
     @Override
-    public Consent saveOrder(Long aConsentId, ResearchOrder aOrder) {
+    public Consent addOrder(Long aConsentId, ResearchOrder aOrder) {
         // get consent by id
         Consent consent = consentService.getConsentById(aConsentId);
 
@@ -42,5 +42,9 @@ public class ResearchOrderServiceImpl implements ResearchOrderService{
             return consentService.saveConsent(consent);
         }
         return null;
+    }
+
+    public ResearchOrder saveOrder(ResearchOrder aOrder){
+        return researchOrderRepository.save(aOrder);
     }
 }

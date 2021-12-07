@@ -3,15 +3,19 @@ package pl.bdaf.medical_center.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.bdaf.medical_center.entity.LaboratoryResult;
+import pl.bdaf.medical_center.entity.ResearchOrder;
 import pl.bdaf.medical_center.repository.LaboratoryResultsRepository;
 
 import java.util.List;
 
 @Service
-public class LaboratoryResultsServiceImpl implements LaboratoryResultsService{
+public class LaboratoryResultsServiceImpl implements LaboratoryResultsService {
 
     @Autowired
     private LaboratoryResultsRepository laboratoryResultsRepository;
+
+    @Autowired
+    private ResearchOrderService researchOrderService;
 
     @Override
     public List<LaboratoryResult> getAllResults() {
@@ -24,8 +28,18 @@ public class LaboratoryResultsServiceImpl implements LaboratoryResultsService{
     }
 
     @Override
-    public LaboratoryResult saveResult(Long aOrderId, LaboratoryResult aResult) {
-        return laboratoryResultsRepository.save(aResult);
+    public ResearchOrder addResult(Long aOrderId, LaboratoryResult aResult) {
+        // get order by id
+        ResearchOrder order = researchOrderService.getOrderById(aOrderId);
+
+        // return null if we can't get to any order
+        if (order == null) return null;
+
+        // save result in order
+        LaboratoryResult result = laboratoryResultsRepository.save(aResult);
+        order.addResult(result);
+        return researchOrderService.saveOrder(order);
+
     }
 
     @Override
@@ -34,10 +48,10 @@ public class LaboratoryResultsServiceImpl implements LaboratoryResultsService{
         LaboratoryResult result = laboratoryResultsRepository.findById(aResultId).get();
 
         // if there is no result with that ID return null
-        if(result == null) return null;
+        if (result == null) return null;
 
         // update result by string from request if it's not empty
-        if(aResultStringFromRequest != null || !aResultStringFromRequest.equalsIgnoreCase(""))
+        if (aResultStringFromRequest != null || !aResultStringFromRequest.equalsIgnoreCase(""))
             result.setResult(aResultStringFromRequest);
 
         return laboratoryResultsRepository.save(result);
