@@ -26,10 +26,10 @@ public class Patient {
     @Column(name = "surname", length = 63, nullable = false)
     private String surname;
 
-    @Column(name = "pesel", length = 15, nullable = false)
+    @Column(name = "pesel", length = 15, nullable = false, unique = true)
     private String pesel;
 
-    @Column(name = "email", length = 31, nullable = false)
+    @Column(name = "email", length = 31, nullable = false, unique = true)
     private String email;
 
     @Column(name = "street", length = 31)
@@ -44,6 +44,6 @@ public class Patient {
     @Column(name = "city", length = 31, nullable = false)
     private String city;
 
-    @Column(name = "phone_number", length = 15, nullable = false)
+    @Column(name = "phone_number", length = 15, nullable = false, unique = true)
     private String phoneNumber;
 }
