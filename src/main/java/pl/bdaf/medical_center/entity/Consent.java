@@ -20,11 +20,11 @@ public class Consent {
     @Column(name = "consent_id", nullable = false)
     private Long consentId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id", referencedColumnName = "patient_id")
     private Patient patient;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     private ResearchProject researchProject;
 

@@ -27,4 +27,41 @@ public class PatientServiceImpl implements PatientService{
     public Patient savePatient(Patient aPatient) {
         return patientRepository.save(aPatient);
     }
+
+    @Override
+    public void deletePatientById(Long aPatientId) {
+        patientRepository.deleteById(aPatientId);
+    }
+
+    @Override
+    public Patient updatePatientById(Long aPatientId, Patient aPatient) {
+        Patient resultPatient = patientRepository.findById(aPatientId).get();
+
+        if(resultPatient == null) return null;
+
+        if (isNotEmpty(aPatient.getName()))
+            resultPatient.setName(aPatient.getName());
+        if (isNotEmpty(aPatient.getSurname()))
+            resultPatient.setSurname(aPatient.getSurname());
+        if (isNotEmpty(aPatient.getPesel()))
+            resultPatient.setPesel(aPatient.getPesel());
+        if (isNotEmpty(aPatient.getEmail()))
+            resultPatient.setEmail(aPatient.getEmail());
+        if (isNotEmpty(aPatient.getStreet()))
+            resultPatient.setStreet(aPatient.getStreet());
+        if (isNotEmpty(aPatient.getPostcode()))
+            resultPatient.setPostcode(aPatient.getPostcode());
+        if (isNotEmpty(aPatient.getHouseNumber()))
+            resultPatient.setHouseNumber(aPatient.getHouseNumber());
+        if (isNotEmpty(aPatient.getCity()))
+            resultPatient.setCity(aPatient.getCity());
+        if (isNotEmpty(aPatient.getPhoneNumber()))
+            resultPatient.setPhoneNumber(aPatient.getPhoneNumber());
+
+        return resultPatient;
+    }
+
+    private boolean isNotEmpty(String aAName) {
+        return aAName != null && !aAName.equalsIgnoreCase("");
+    }
 }

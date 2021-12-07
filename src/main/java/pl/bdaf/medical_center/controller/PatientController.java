@@ -24,8 +24,20 @@ public class PatientController {
         return patientService.getPatientById(aPatientId);
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public Patient savePatient(@RequestBody Patient aPatient){
         return patientService.savePatient(aPatient);
     }
+
+    @PutMapping("/{id}")
+    public Patient updatePatientById(@PathVariable("id") Long aPatientId, @RequestBody Patient aPatient){
+        return patientService.updatePatientById(aPatientId, aPatient);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deletePatientById(@PathVariable("id") Long aPatientId){
+        patientService.deletePatientById(aPatientId);
+        return "Patient with Id "+ aPatientId + " has been deleted successfully.";
+    }
+
 }
