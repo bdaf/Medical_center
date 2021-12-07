@@ -22,13 +22,13 @@
         \l
     To connect to it type: 
     
-        \c evaluation_system
+        \c medical_center
     To see tables and relations in database type "\d" ("\dt" to see only tables):
     
         \d
     To see more details about some table type "/d <name_of_table>", for example:
     
-        \d person
+        \d patient
     To see records in table just use "SELECT * FROM <name_of_table>";" like in oridnary sql, for example:
     
         SELECT * FROM patient;
@@ -146,7 +146,7 @@
   
   Once record in consent table is created means the consent of the patient to participate in the research project, if the client wishes to quote the decision, record in that table should be removed.
 
-  Column "is_connected" means that patient has been included in research project and research orders with that consent record can be created.
+  Column "is_connected" and its positive value means that patient has been included in research project and research orders with that consent record can be created.
 
   If value of column "is_connected" is "false", we cannot create research order linked with it.
 
