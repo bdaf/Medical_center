@@ -20,6 +20,6 @@ public class ResearchProject {
     @Column(name = "project_id", nullable = false)
     private Long projectId;
 
-    @Column(name = "disease", length = 63, nullable = false)
+    @Column(name = "disease", length = 63, nullable = false, unique = true)
     private String disease;
 }

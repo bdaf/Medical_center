@@ -58,10 +58,10 @@ public class PatientServiceImpl implements PatientService{
         if (isNotEmpty(aPatient.getPhoneNumber()))
             resultPatient.setPhoneNumber(aPatient.getPhoneNumber());
 
-        return resultPatient;
+        return patientRepository.save(resultPatient);
     }
 
-    private boolean isNotEmpty(String aAName) {
-        return aAName != null && !aAName.equalsIgnoreCase("");
+    private boolean isNotEmpty(String aValueToCheck) {
+        return aValueToCheck != null && !aValueToCheck.equalsIgnoreCase("");
     }
 }
