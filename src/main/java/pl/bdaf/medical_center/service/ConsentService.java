@@ -12,4 +12,6 @@ public interface ConsentService {
     Consent saveConsent(Consent aConsent);
 
     void deleteById(Long aConsentId);
+
+    Consent setConnection(Long aConsentId, Boolean aIsConnected);
 }

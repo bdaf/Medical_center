@@ -34,4 +34,10 @@ public class ConsentController {
         consentService.deleteById(aConsentId);
         return "Consent with Id "+ aConsentId + " has been deleted successfully.";
     }
+
+    // You can assign or remove connection between patient and research project
+    @PutMapping("/{id}")
+    public Consent assignConnection(@PathVariable("id") Long aConsentId, @RequestBody Boolean aIsConnection){
+        return consentService.setConnection(aConsentId, aIsConnection);
+    }
 }

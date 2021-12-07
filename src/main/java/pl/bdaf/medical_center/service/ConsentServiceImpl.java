@@ -33,4 +33,11 @@ public class ConsentServiceImpl implements ConsentService {
     public void deleteById(Long aConsentId) {
         consentRepository.deleteById(aConsentId);
     }
+
+    @Override
+    public Consent setConnection(Long aConsentId, Boolean aIsConnected) {
+        Consent consentToUpdate = consentRepository.findById(aConsentId).get();
+        consentToUpdate.setIsConnected(aIsConnected);
+        return consentRepository.save(consentToUpdate);
+    }
 }
