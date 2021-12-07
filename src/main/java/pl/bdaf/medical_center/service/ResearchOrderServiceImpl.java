@@ -6,6 +6,7 @@ import pl.bdaf.medical_center.entity.Consent;
 import pl.bdaf.medical_center.entity.ResearchOrder;
 import pl.bdaf.medical_center.repository.ResearchOrderRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,19 +31,29 @@ public class ResearchOrderServiceImpl implements ResearchOrderService{
     @Override
     public Consent addOrder(Long aConsentId, ResearchOrder aOrder) {
         // get consent by id
-        Consent consent = consentService.getConsentById(aConsentId);
+        Consent consentToAddOrderIn = consentService.getConsentById(aConsentId);
 
         // return null if we can't get to any consent
-        if(consent == null) return null;
+        if(consentToAddOrderIn == null) return null;
 
         // save order only if patient is connected to project
-        if(consent.getIsConnected()) {
-            researchOrderRepository.save(aOrder);
-            consent.addOrder(aOrder);
-            return consentService.saveConsent(consent);
+        if(consentToAddOrderIn.getIsConnected()) {
+            consentToAddOrderIn.addOrder(researchOrderRepository.save(aOrder));
+            return consentService.saveConsent(consentToAddOrderIn);
         }
         return null;
     }
+    /*
+        Category categoryToAddDiscountIn = categoryService.findById(aCategoryId);
+
+        if(aDiscount.getPercent() >= 1) aDiscount.setPercent(0.99F);
+        if(aDiscount.getPercent() <= 0) aDiscount.setPercent(0.01F);
+
+        categoryToAddDiscountIn.addDiscount(discountRepository.save(aDiscount));
+
+        return categoryService.saveCategory(categoryToAddDiscountIn);
+     */
+
 
     public ResearchOrder saveOrder(ResearchOrder aOrder){
         return researchOrderRepository.save(aOrder);

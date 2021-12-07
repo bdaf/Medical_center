@@ -31,7 +31,7 @@ public class Consent {
     private ResearchProject researchProject;
 
     @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "consent_id", referencedColumnName = "consent_id", nullable = false)
+    @JoinColumn(name = "consent_id", referencedColumnName = "consent_id")
     private List<ResearchOrder> orders;
 
     public void addOrder(ResearchOrder aOrder){
