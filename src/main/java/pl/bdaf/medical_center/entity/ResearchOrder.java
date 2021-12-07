@@ -21,10 +21,10 @@ public class ResearchOrder {
     @Column(name = "order_id", nullable = false)
     private Long orderId;
 
-    @Column(name = "research_date")
+    @Column(name = "research_date", nullable = false)
     private Date researchDate;
 
     @ManyToOne
-    @JoinColumn(name = "consent_id", referencedColumnName = "consent_id")
+    @JoinColumn(name = "consent_id", referencedColumnName = "consent_id", nullable = false)
     private Consent consent;
 }

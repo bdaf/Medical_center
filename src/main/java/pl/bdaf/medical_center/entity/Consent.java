@@ -21,11 +21,11 @@ public class Consent {
     private Long consentId;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id", referencedColumnName = "patient_id")
+    @JoinColumn(name = "patient_id", referencedColumnName = "patient_id", nullable = false)
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
+    @JoinColumn(name = "project_id", referencedColumnName = "project_id", nullable = false)
     private ResearchProject researchProject;
 
     @Column(name = "is_connected")
